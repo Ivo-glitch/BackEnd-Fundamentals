@@ -32,4 +32,13 @@ async function insert(tableName, data){
     }
 }
 
-module.exports = {query,insert}
+async function del(tableName,data){
+    try{
+        await query(`DELETE FROM ${tableName} WHERE id=?`,[data])
+        return data
+    }catch(e){
+        return e
+    }
+}
+
+module.exports = {query,insert,del}

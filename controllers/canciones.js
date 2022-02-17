@@ -2,8 +2,8 @@ const database = require ("../database")
 
 class MusicController{
 
-    async create( music ){
-        const res = await database.insert('music',music)
+    async create( song ){
+        const res = await database.insert('playlist',song)
         console.log(res)
         return res
     }
@@ -14,10 +14,11 @@ class MusicController{
     }
 
 
-    //TODO ver video de delete y hacer la modificacion necesaria
-    // async delete(id){
-    //     const song = await database.delete("music",id)
-    // }
+    
+    async del(id){
+        const song = await database.del("playlist",id)
+        return song
+    }
     
 }
 

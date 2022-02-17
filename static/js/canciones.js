@@ -14,7 +14,7 @@ function renderSongs(){
             <p>creada el: <span>${formatDate(song.fecha_creacion)}</span></p>
             <div class=song_options>
                 <button class="song_button edit">Editar</button>
-                <button class="song_button delete">Eliminar</button>
+                <button class="song_button delete" onClick="eliminar(${song.id})">Eliminar</button>
             </div>
         </div>`
 
@@ -30,11 +30,32 @@ fetch("http://localhost:4000/api/playlist")
     renderSongs()
 })
 
+function eliminar(id){
+    
+    fetch("/api/songs/"+id,{
+        method:"DELETE"
+    }).then((res)=>{
+        return res.json()
+    }).then((data)=>{
+        filterSongs(id)
+        renderSongs()
+    })
+}
+
+function filterSongs(id){
+    let newSongs = []
+
+    for (let s of songsData) {
+        if (s.id !== id) {
+            newSongs.push(s)
+        } 
+    }
+
+    songsData = newSongs
+}
+
 function formatDate(date){
-    if (date.toString.size === 0){
-        return "Fecha no asignada"
-    }else{
         let splitDate = date.toString().split("T")[0].split("-")
         return splitDate[2]+"-"+splitDate[1]+"-"+splitDate[0]
-    }
+    
 }
