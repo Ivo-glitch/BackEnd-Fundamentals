@@ -41,4 +41,22 @@ async function del(tableName,data){
     }
 }
 
-module.exports = {query,insert,del}
+async function findOne(tableName,data){
+    try{
+        await query(`SELECT * FROM ${tableName} WHERE id=?`,data)
+        return data
+    }catch(e){
+        return e
+    }
+}
+
+async function mod(tableName,data){
+    try{
+        await query(`UPDATE ${tableName} WHERE id=?`,data)
+        return data
+    }catch(e){
+        return e
+    }
+}
+
+module.exports = {query,insert,del,mod,findOne}

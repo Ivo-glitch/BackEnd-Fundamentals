@@ -13,7 +13,7 @@ function renderSongs(){
             <h3 class="song_sub-title">${song.nombre_cancion}</h3>
             <p>creada el: <span>${formatDate(song.fecha_creacion)}</span></p>
             <div class=song_options>
-                <button class="song_button edit">Editar</button>
+                <a href="/songs/update/${song.id}" class="song_button edit" >Editar</a>
                 <button class="song_button delete" onClick="eliminar(${song.id})">Eliminar</button>
             </div>
         </div>`

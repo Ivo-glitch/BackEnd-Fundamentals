@@ -19,6 +19,16 @@ class MusicController{
         const song = await database.del("playlist",id)
         return song
     }
+
+    async findById(id){
+        const song = await database.findOne("playlist",id)
+        return song
+    }
+    
+    async mod(id){
+        const song =await database.mod("playlist",id)
+        return song
+    }
     
 }
 

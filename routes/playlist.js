@@ -1,7 +1,7 @@
 const express = require("express")
 const path = require("path")
 const MusicController = require("../controllers/canciones")
-
+const modificar = require("../static/js/modificar")
 function views(document){
     return path.join(__dirname,"../", "views", document)
 }
@@ -41,5 +41,22 @@ router.delete("/api/songs/:id", async (req,res)=>{
     var songs = await musicController.readAll()
     return res.json(songs)
 })
+
+ router.get("/songs/update/:id", async (req,res)=>{
+    return res.sendFile(views("modificar-cancion.html"))
+})
+
+// router.get("/api/songs/update/:id"), async (req,res) =>{
+//     const id = req.params.id
+//     var song = await musicController.findById(id)
+//     console.log(song)
+//     return song
+// }
+
+// router.put("/api/songs/:id"), async (req, res)=>{
+//     const id = req.params.id
+//     var song = await musicController.findById(id)
+//     console.log(song)
+// }
 
 module.exports = router
