@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
     port:3306,
     user:'root',
     password: 'root',
-    database:'proyectoBackEnd1'
+    database:'proyectobackend1'
 })
 
 //FUNCION QUERY
@@ -16,7 +16,7 @@ function query ( sql, data ){
             if(e){
                 reject(e.sqlMessage)
             }else{
-                result(resolve)
+                resolve(result)
             }
         })
     })
@@ -31,3 +31,5 @@ async function insert(tableName, data){
         return {e,success:false}
     }
 }
+
+module.exports = {query,insert}
